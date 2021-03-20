@@ -35,7 +35,8 @@ public class BookRepository {
         var query = entityManager.createQuery(
                 "select b from Book b " +
                         "where lower(b.Name) like ?1 or " +
-                        "lower(b.Isbn) like ?1", Book.class);
+                        "lower(b.Isbn) like ?1 or " +
+                        "lower(b.Author) like ?1", Book.class);
         query.setParameter(1,'%' + search.toLowerCase(Locale.ROOT) + '%');
         return query.getResultList();
     }
